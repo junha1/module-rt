@@ -72,7 +72,7 @@ impl UserModule for ModuleA {
         name: &str,
         handle: HandleToExchange,
     ) {
-        self.hello_list.push((remote_trait_object::import_service_box(rto_context, handle), name.parse().unwrap()))
+        self.hello_list.push((remote_trait_object::import_service(rto_context, handle), name.parse().unwrap()))
     }
 
     fn debug(&mut self, _arg: &[u8]) -> Vec<u8> {
@@ -117,7 +117,7 @@ mod tests {
         let (executor_ctx, rto_context, handle) =
             with_rto::setup_executor(ctx, Box::new(DummyPong) as Box<dyn SandboxForModule>).unwrap();
         let mut module: Box<dyn crate::coordinator_interface::FoundryModule> =
-            remote_trait_object::import_service_box(&rto_context, handle);
+            remote_trait_object::import_service(&rto_context, handle);
         module.initialize(init, &exports);
         (executor_ctx, rto_context, module)
     }

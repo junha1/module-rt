@@ -18,6 +18,8 @@ extern crate foundry_process_sandbox as fproc_sndbx;
 
 mod bootstrap;
 pub mod coordinator_interface;
+/// This is public as it can be reused in Foundry's test
+pub mod example;
 mod module;
 mod port;
 
